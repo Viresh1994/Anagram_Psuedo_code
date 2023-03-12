@@ -1,0 +1,13 @@
+---
+  - hosts: all
+    tasks:
+       - name: stop the container
+         shell: docker stop medilab-web-app
+       - name: remove the container
+         shell: docker rm medilab-web-app
+       - name: remove the tagged image
+         shell: docker rmi -f narsi1839/preclinic-img:latest
+       - name: remove the image
+         shell: docker rmi -f preclinic-img:latest
+       - name: run the container
+         shell: docker run -td --name=medilab-web-app -p 8087:8087 narsi1839/preclinic-img:latest
